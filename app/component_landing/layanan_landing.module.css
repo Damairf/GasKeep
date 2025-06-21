@@ -1,0 +1,72 @@
+.wrapper {
+    background-color: #2f6dfd;
+    margin-top: 4%;
+    height: 55vh;
+}
+
+.judul {
+    padding-top: 1%;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #F7C100;
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: 5%;
+    position: relative;
+    gap: 4rem;
+}
+
+.container {
+    background-color: white;
+    width: 25vw;
+    height: 35vh;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container:hover {
+    transform: scale(1.05);
+}
+
+.image_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.judul_container {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgb(44, 44, 44);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.isi_container {
+    text-align: center;
+    padding-left: 8%;
+    padding-right: 8%;
+    padding-top: 2%;
+    color: rgb(44, 44, 44);
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    margin: 0;
+}
