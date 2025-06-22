@@ -1,5 +1,6 @@
 import styles from "./body_landing.module.css"
 import Image from "next/image"
+import Link from "next/link"
 
 const BodyLanding = () => {
     return(
@@ -11,7 +12,9 @@ const BodyLanding = () => {
             <div className={styles.text_container}>
                 <h1 className={styles.judul}>GasKeep</h1>
                 <p className={styles.isi}>Tidak perlu khawatir lagi untuk meninggalkan kendaraan anda, karena kami hadir menyediakan layanan penitipan dan perawatan rutin kendaraan selagi anda keluar kota</p>
-                <button id="layanan" type="button" className={styles.button}>Daftar Sekarang</button>
+                <Link href="/login">
+                    <button id="layanan" type="button" className={styles.button}>Daftar Sekarang</button>
+                </Link>
             </div>
         </div>
     )

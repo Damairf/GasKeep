@@ -1,16 +1,6 @@
-# GasKeep - Aplikasi Penitipan Kendaraan
+# Setup Google OAuth untuk GasKeep
 
-Aplikasi web untuk layanan penitipan dan perawatan kendaraan dengan sistem login Google OAuth.
-
-## Fitur
-
-- ✅ Landing page dengan navigasi smooth scroll
-- ✅ Login menggunakan Google OAuth
-- ✅ Dashboard user setelah login
-- ✅ Responsive design
-- ✅ Sistem autentikasi yang aman
-
-## Setup Google OAuth
+## Langkah-langkah Setup Google OAuth
 
 ### 1. Buat Project di Google Cloud Console
 
@@ -32,7 +22,13 @@ Aplikasi web untuk layanan penitipan dan perawatan kendaraan dengan sistem login
      - `http://localhost:3000/login` (untuk development)
      - `https://yourdomain.com/login` (untuk production)
 
-### 3. Setup Environment Variables
+### 3. Dapatkan Client ID dan Client Secret
+
+Setelah membuat credentials, Anda akan mendapatkan:
+- **Client ID**: (akan ditampilkan)
+- **Client Secret**: (akan ditampilkan)
+
+### 4. Setup Environment Variables
 
 Buat file `.env.local` di root project dengan isi:
 
@@ -46,34 +42,12 @@ GOOGLE_CLIENT_SECRET=YOUR_GOOGLE_CLIENT_SECRET_HERE
 - `NEXT_PUBLIC_GOOGLE_CLIENT_ID` harus diawali dengan `NEXT_PUBLIC_` agar bisa diakses di client-side
 - `GOOGLE_CLIENT_SECRET` hanya untuk server-side (jika diperlukan)
 
-## Instalasi dan Menjalankan
+### 5. Restart Development Server
+
+Setelah menambahkan environment variables, restart development server:
 
 ```bash
-# Install dependencies
-npm install
-
-# Setup environment variables
-# Buat file .env.local dan isi dengan credentials Google OAuth
-
-# Jalankan development server
 npm run dev
-```
-
-Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
-
-## Struktur Aplikasi
-
-```
-Gaskeep/
-├── app/
-│   ├── component_landing/     # Komponen landing page
-│   ├── login/                 # Halaman login
-│   ├── dashboard/             # Halaman dashboard
-│   └── page.tsx              # Halaman utama
-├── public/
-│   └── img/                  # Gambar dan logo
-├── GOOGLE_OAUTH_SETUP.md     # Dokumentasi setup Google OAuth
-└── README.md                 # File ini
 ```
 
 ## Cara Kerja Sistem
@@ -84,7 +58,7 @@ Gaskeep/
 4. **User mengklik Google button dan memilih akun**
 5. **Google mengirimkan JWT token**
 6. **Sistem decode token dan menyimpan data user**
-7. **User diarahkan ke `/dashboard`**
+7. **User diarahkan ke `/dashboard` (atau halaman lain)**
 
 ## Data User yang Disimpan
 
@@ -123,16 +97,4 @@ Setelah login berhasil, sistem akan menyimpan data berikut di localStorage:
 - Client Secret tidak boleh di-expose ke client-side
 - Selalu gunakan HTTPS di production
 - Validasi token di server-side jika diperlukan
-- Implementasikan CSRF protection jika diperlukan
-
-## Teknologi yang Digunakan
-
-- **Next.js 15** - React framework
-- **TypeScript** - Type safety
-- **Google OAuth 2.0** - Authentication
-- **CSS Modules** - Styling
-- **Tailwind CSS** - Utility-first CSS framework
-
-## Lisensi
-
-©2025 GasKeep - All Rights Reserved
+- Implementasikan CSRF protection jika diperlukan 
