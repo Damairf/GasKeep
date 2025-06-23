@@ -2,10 +2,21 @@
 import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+interface Pesanan {
+  kode: string;
+  nama: string;
+  alamat: string;
+  telepon: string;
+  tanggalMasuk: string;
+  tanggalKeluar: string;
+  paket: string;
+  total: number;
+}
+
 export default function RincianPemesananPage({ params }: { params: Promise<{ kode: string }> }) {
   const router = useRouter();
   const { kode } = use(params);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Pesanan | null>(null);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
 
@@ -13,7 +24,7 @@ export default function RincianPemesananPage({ params }: { params: Promise<{ kod
     fetch(`/api/pemesanan?kode=${kode}`)
       .then(res => res.json())
       .then(res => {
-        setData(res.data);
+        setData(res.data as Pesanan);
         setLoading(false);
       });
   }, [kode]);

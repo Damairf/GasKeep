@@ -6,7 +6,7 @@ const BodyLanding = () => {
     return(
         <div id="beranda" className={styles.wrapper}>
             <div className={styles.container}>
-                <h1 className={styles.tagline}>"Teman Setia Kendaraan Anda"</h1>
+                <h1 className={styles.tagline}>&quot;Teman Setia Kendaraan Anda&quot;</h1>
                 <Image className={styles.image_container} src="/img/parking_lot.jpg" alt="Parking Lot" fill/>
             </div>
             <div className={styles.text_container}>

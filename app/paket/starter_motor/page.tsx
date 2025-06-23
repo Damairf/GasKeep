@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const StarterMotorPage = () => {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<unknown>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

@@ -2,14 +2,27 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+
+interface User {
+  name: string;
+  picture?: string;
+}
+
+interface Pesanan {
+  _id: string;
+  kode: string;
+  tanggalMasuk: string;
+  tanggalKeluar: string;
+  paket: string;
+  total: number;
+}
 
 const DashboardPage = () => {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<unknown>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [hoveredMotorItem, setHoveredMotorItem] = useState<number | null>(null);
     const [hoveredMobilItem, setHoveredMobilItem] = useState<number | null>(null);
-    const [pesanan, setPesanan] = useState<any[]>([]);
+    const [pesanan, setPesanan] = useState<Pesanan[]>([]);
 
     useEffect(() => {
         const checkAuth = () => {
@@ -38,14 +51,6 @@ const DashboardPage = () => {
             document.removeEventListener('visibilitychange', checkAuth);
         };
     }, []);
-
-    const handleLogout = () => {
-        localStorage.removeItem('gaskeep_user');
-        if (window.google) {
-            window.google.accounts.id.disableAutoSelect();
-        }
-        window.location.replace('/');
-    };
 
     const handleMotorMouseEnter = (index: number) => {
         setHoveredMotorItem(index);
@@ -110,11 +115,10 @@ const DashboardPage = () => {
         }
     };
 
-    const handlePageShow = (event: PageTransitionEvent) => {
-        if (event.persisted) {
-            window.location.reload();
-        }
-    };
+    let userObj: User | null = null;
+    if (user && typeof user === 'object' && 'name' in user) {
+        userObj = user as User;
+    }
 
     if (isLoading) {
         return (
@@ -137,7 +141,7 @@ const DashboardPage = () => {
         );
     }
 
-    if (!user) {
+    if (!userObj) {
         return null;
     }
 
@@ -197,8 +201,8 @@ const DashboardPage = () => {
                         }}
                         title="Profil Akun"
                     >
-                        {user?.picture ? (
-                            <Image src={user.picture} alt="Profil" width={40} height={40} style={{objectFit: 'cover'}} />
+                        {userObj.picture ? (
+                            <Image src={userObj.picture} alt="Profil" width={40} height={40} style={{objectFit: 'cover'}} />
                         ) : (
                             <div style={{width: '40px', height: '40px', background: '#eee', borderRadius: '50%'}} />
                         )}
@@ -252,7 +256,7 @@ const DashboardPage = () => {
                             fontFamily: 'Poppins, sans-serif',
                             marginBottom: '1rem'
                         }}>
-                            Selamat Datang di GasKeep, {user.name}
+                            Selamat Datang di GasKeep, {userObj.name}
                         </h1>
                         <p id="motor" style={{
                             fontSize: '1.2rem',

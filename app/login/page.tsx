@@ -21,7 +21,7 @@ declare global {
 
 const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<unknown>(null);
 
     // Google OAuth Configuration
     const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '648984769678-o6vjiqi2lds9o745j7cpep6aapaifcd9.apps.googleusercontent.com';
@@ -64,7 +64,7 @@ const LoginPage = () => {
                 document.head.removeChild(script);
             }
         };
-    }, []);
+    }, [GOOGLE_CLIENT_ID]);
 
     const handleCredentialResponse = async (response: any) => {
         setIsLoading(true);
@@ -118,7 +118,8 @@ const LoginPage = () => {
         }
     }, []);
 
-    if (user) {
+    if (user && typeof user === 'object' && 'name' in user && 'email' in user) {
+        const u = user as { name: string; email: string };
         return (
             <div style={{
                 minHeight: '100vh',
@@ -145,13 +146,13 @@ const LoginPage = () => {
                         color: '#111827',
                         marginBottom: '0.5rem'
                     }}>
-                        Selamat datang, {user.name}!
+                        Selamat datang, {u.name}!
                     </h2>
                     <p style={{
                         color: '#6b7280',
                         marginBottom: '1.5rem'
                     }}>
-                        {user.email}
+                        {u.email}
                     </p>
                     <button
                         onClick={handleLogout}

@@ -39,7 +39,6 @@ const DetailPemesananPage = () => {
   const [alamat, setAlamat] = useState('');
   const [telepon, setTelepon] = useState('');
   const [jumlahHari, setJumlahHari] = useState(7);
-  const [jumlahHariError, setJumlahHariError] = useState('');
   const [total, setTotal] = useState(0);
   const [teleponError, setTeleponError] = useState('');
   const [tanggalMasuk, setTanggalMasuk] = useState(() => {
