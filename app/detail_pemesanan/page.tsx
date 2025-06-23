@@ -94,7 +94,7 @@ const DetailPemesananPage = () => {
   };
 
   const handleNamaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
+    const value = e.target.value.replace(/(^\w|\s\w)/g, m => m.toUpperCase());
     setNama(value);
   };
 
