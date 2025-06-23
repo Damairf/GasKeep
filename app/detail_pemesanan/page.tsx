@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const paketData: Record<string, { judul: string; harga: number }> = {
@@ -40,7 +40,7 @@ const getUserEmail = () => {
   }
 };
 
-const DetailPemesananPage = () => {
+const DetailPemesananContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [paketId, setPaketId] = useState<string | null>(null);
@@ -234,5 +234,11 @@ const DetailPemesananPage = () => {
     </div>
   );
 };
+
+const DetailPemesananPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <DetailPemesananContent />
+  </Suspense>
+);
 
 export default DetailPemesananPage; 
