@@ -10,8 +10,8 @@ declare global {
         google: {
             accounts: {
                 id: {
-                    initialize: (config: any) => void;
-                    renderButton: (element: HTMLElement | null, options: any) => void;
+                    initialize: (config: unknown) => void;
+                    renderButton: (element: HTMLElement | null, options: unknown) => void;
                     disableAutoSelect: () => void;
                 };
             };
@@ -66,33 +66,37 @@ const LoginPage = () => {
         };
     }, [GOOGLE_CLIENT_ID]);
 
-    const handleCredentialResponse = async (response: any) => {
+    const handleCredentialResponse = async (response: unknown) => {
         setIsLoading(true);
         try {
-            // Decode the JWT token
-            const payload = JSON.parse(atob(response.credential.split('.')[1]));
-            
-            console.log('Google Login Success:', payload);
-            
-            // Store user data in localStorage or state management
-            const userData = {
-                id: payload.sub,
-                email: payload.email,
-                name: payload.name,
-                picture: payload.picture,
-                given_name: payload.given_name,
-                family_name: payload.family_name,
-                email_verified: payload.email_verified,
-                loginTime: new Date().toISOString()
-            };
+            if (typeof response === 'object' && response && 'credential' in response) {
+                const credential = (response as { credential: string }).credential;
+                const payload = JSON.parse(atob(credential.split('.')[1]));
+                
+                console.log('Google Login Success:', payload);
+                
+                // Store user data in localStorage or state management
+                const userData = {
+                    id: payload.sub,
+                    email: payload.email,
+                    name: payload.name,
+                    picture: payload.picture,
+                    given_name: payload.given_name,
+                    family_name: payload.family_name,
+                    email_verified: payload.email_verified,
+                    loginTime: new Date().toISOString()
+                };
 
-            // Save to localStorage
-            localStorage.setItem('gaskeep_user', JSON.stringify(userData));
-            setUser(userData);
+                // Save to localStorage
+                localStorage.setItem('gaskeep_user', JSON.stringify(userData));
+                setUser(userData);
 
-            // Redirect to dashboard or home page
-            window.location.href = '/dashboard';
-            
+                // Redirect to dashboard or home page
+                window.location.href = '/dashboard';
+                
+            } else {
+                throw new Error('Invalid response');
+            }
         } catch (error) {
             console.error('Login error:', error);
             alert('Login gagal. Silakan coba lagi.');

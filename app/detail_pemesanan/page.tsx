@@ -29,6 +29,17 @@ const paketData: Record<string, { judul: string; harga: number }> = {
   },
 };
 
+const getUserEmail = () => {
+  if (typeof window === 'undefined') return '';
+  const user = localStorage.getItem('gaskeep_user');
+  if (!user) return '';
+  try {
+    return JSON.parse(user).email || '';
+  } catch {
+    return '';
+  }
+};
+
 const DetailPemesananPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -72,7 +83,7 @@ const DetailPemesananPage = () => {
       setJumlahHari(NaN);
       return;
     }
-    let num = parseInt(value, 10);
+    const num = parseInt(value, 10);
     setJumlahHari(num);
   };
 
@@ -124,7 +135,7 @@ const DetailPemesananPage = () => {
     try {
       const res = await fetch('/api/pemesanan', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-user-email': getUserEmail() },
         body: JSON.stringify({
           nama,
           alamat,
@@ -144,7 +155,7 @@ const DetailPemesananPage = () => {
         alert('Gagal menyimpan pemesanan: ' + data.error);
         setIsSubmitting(false);
       }
-    } catch (err) {
+    } catch {
       alert('Terjadi error saat menyimpan pemesanan.');
       setIsSubmitting(false);
     }

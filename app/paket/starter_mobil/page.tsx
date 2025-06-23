@@ -35,14 +35,6 @@ const StarterMotorPage = () => {
         };
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem('gaskeep_user');
-        if (window.google) {
-            window.google.accounts.id.disableAutoSelect();
-        }
-        window.location.replace('/');
-    };
-
     if (isLoading) {
         return (
             <div style={{
