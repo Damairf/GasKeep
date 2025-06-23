@@ -9,17 +9,34 @@ const DashboardPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [hoveredMotorItem, setHoveredMotorItem] = useState<number | null>(null);
     const [hoveredMobilItem, setHoveredMobilItem] = useState<number | null>(null);
+    const [pesanan, setPesanan] = useState<any[]>([]);
 
     useEffect(() => {
-        // Check if user is logged in
-        const savedUser = localStorage.getItem('gaskeep_user');
-        if (savedUser) {
-            setUser(JSON.parse(savedUser));
-        } else {
-            // Redirect to login if not logged in
-            window.location.href = '/login';
-        }
-        setIsLoading(false);
+        const checkAuth = () => {
+            const savedUser = localStorage.getItem('gaskeep_user');
+            if (savedUser) {
+                setUser(JSON.parse(savedUser));
+            } else {
+                window.location.href = '/login';
+            }
+            setIsLoading(false);
+        };
+
+        checkAuth();
+        window.addEventListener('focus', checkAuth);
+        document.addEventListener('visibilitychange', checkAuth);
+
+        // Ambil data pesanan
+        fetch('/api/pemesanan')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) setPesanan(data.data);
+            });
+
+        return () => {
+            window.removeEventListener('focus', checkAuth);
+            document.removeEventListener('visibilitychange', checkAuth);
+        };
     }, []);
 
     const handleLogout = () => {
@@ -27,7 +44,7 @@ const DashboardPage = () => {
         if (window.google) {
             window.google.accounts.id.disableAutoSelect();
         }
-        window.location.href = '/';
+        window.location.replace('/');
     };
 
     const handleMotorMouseEnter = (index: number) => {
@@ -46,6 +63,32 @@ const DashboardPage = () => {
         setHoveredMobilItem(null);
     };
 
+    const handleStarterMotorClick = () => {
+        window.location.href = '/paket/starter_motor';
+    };
+    const handleBoostMotorClick = () => {
+        window.location.href = '/paket/boost_motor';
+    };
+    const handleMaxMotorClick = () => {
+        window.location.href = '/paket/max_motor';
+    };
+    const handleStarterMobilClick = () => {
+        window.location.href = '/paket/starter_mobil';
+    };
+    const handleBoostMobilClick = () => {
+        window.location.href = '/paket/boost_mobil';
+    };
+    const handleMaxMobilClick = () => {
+        window.location.href = '/paket/max_mobil';
+    };
+
+    const scrollToAtas = () => {
+        const atasSection = document.getElementById('atas');
+        if (atasSection) {
+            atasSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     const scrollToMotor = () => {
         const motorSection = document.getElementById('motor');
         if (motorSection) {
@@ -57,6 +100,19 @@ const DashboardPage = () => {
         const mobilSection = document.getElementById('mobil');
         if (mobilSection) {
             mobilSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    
+    const scrollToPesanan = () => {
+        const pesananSection = document.getElementById('pesanan');
+        if (pesananSection) {
+            pesananSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const handlePageShow = (event: PageTransitionEvent) => {
+        if (event.persisted) {
+            window.location.reload();
         }
     };
 
@@ -105,7 +161,7 @@ const DashboardPage = () => {
                 justifyContent: 'space-between',
                 alignItems: 'center'
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div onClick={scrollToAtas} style={{ display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer'}}>
                     <Image 
                         src="/img/Logo_GasKeep_Biru.png" 
                         alt="Logo GasKeep" 
@@ -121,33 +177,37 @@ const DashboardPage = () => {
                     <div className='header_paket' style={{ textAlign: 'right'}}>
                         <h1 className='header_text' style={{margin: 0, marginRight: '1rem', fontSize: '1rem', fontFamily: 'Poppins, sans-serif', color: 'rgb(44, 44, 44)', cursor: 'pointer', transition: 'color 0.3s ease'}} onClick={scrollToMobil}>GasKeep Mobil</h1>
                     </div>
-                    <div style={{ textAlign: 'right' }}>
-                        <p style={{ margin: 0, fontSize: '0.875rem', fontFamily: 'Poppins, sans-serif', color: '#6b7280' }}>
-                            Selamat datang,
-                        </p>
-                        <p style={{ margin: 0, fontWeight: '500', fontFamily: 'Poppins, sans-serif', color: 'rgb(44, 44, 44)' }}>
-                            {user.name}
-                        </p>
+                    <div className='header_paket' style={{ textAlign: 'right'}}>
+                        <h1 className='header_text' style={{margin: 0, marginRight: '1rem', fontSize: '1rem', fontFamily: 'Poppins, sans-serif', color: 'rgb(44, 44, 44)', cursor: 'pointer', transition: 'color 0.3s ease'}} onClick={scrollToPesanan}>Pesanan Saya</h1>
                     </div>
                     <button
-                        onClick={handleLogout}
+                        onClick={() => window.location.href = '/dashboard/profile'}
                         style={{
-                            padding: '0.5rem 1rem',
-                            backgroundColor: '#dc2626',
-                            color: 'white',
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '50%',
+                            overflow: 'hidden',
                             border: 'none',
-                            borderRadius: '0.375rem',
+                            background: 'none',
                             cursor: 'pointer',
-                            fontSize: '0.875rem'
+                            padding: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
+                        title="Profil Akun"
                     >
-                        Keluar
+                        {user?.picture ? (
+                            <Image src={user.picture} alt="Profil" width={40} height={40} style={{objectFit: 'cover'}} />
+                        ) : (
+                            <div style={{width: '40px', height: '40px', background: '#eee', borderRadius: '50%'}} />
+                        )}
                     </button>
                 </div>
             </header>
 
             {/* Main Content */}
-            <main style={{
+            <main id="atas" style={{
                 padding: '2rem',
                 maxWidth: '1200px',
                 margin: '0 auto',
@@ -209,6 +269,7 @@ const DashboardPage = () => {
                     padding: '2rem',
                     borderRadius: '0.5rem',
                     boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+                    marginTop: '2rem',
                     marginLeft: '5%',
                     marginRight: '5%',
                     paddingLeft: '4%',
@@ -237,7 +298,7 @@ const DashboardPage = () => {
                                 backgroundColor: '#2f6dfd',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '47vh',
+                                height: '50vh',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -245,6 +306,7 @@ const DashboardPage = () => {
                             }}
                             onMouseEnter={() => handleMotorMouseEnter(0)}
                             onMouseLeave={handleMotorMouseLeave}
+                            onClick={handleStarterMotorClick}
                         >
                             {hoveredMotorItem === 0 && (
                                 <div style={{
@@ -294,6 +356,9 @@ const DashboardPage = () => {
                                     <li>Penitipan Motor</li>
                                     <li>Perawatan Motor</li>
                                     <li>Keamanan Motor</li>
+                                    <li style={{color: '#919191'}}>Cuci Motor</li>
+                                    <li style={{color: '#919191'}}>Penjemputan Motor</li>
+                                    <li style={{color: '#919191'}}>Pengantaran Motor</li>
                                 </ul>
                             </div>
                         </li>
@@ -303,7 +368,7 @@ const DashboardPage = () => {
                                 backgroundColor: '#2f6dfd',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '47vh',
+                                height: '50vh',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -311,6 +376,7 @@ const DashboardPage = () => {
                             }}
                             onMouseEnter={() => handleMotorMouseEnter(1)}
                             onMouseLeave={handleMotorMouseLeave}
+                            onClick={handleBoostMotorClick}
                         >
                             {hoveredMotorItem === 1 && (
                                 <div style={{
@@ -361,6 +427,8 @@ const DashboardPage = () => {
                                     <li>Perawatan Motor</li>
                                     <li>Keamanan Motor</li>
                                     <li>Cuci Motor</li>
+                                    <li style={{color: '#919191'}}>Penjemputan Motor</li>
+                                    <li style={{color: '#919191'}}>Pengantaran Motor</li>
                                 </ul>
                             </div>
                         </li>
@@ -370,7 +438,7 @@ const DashboardPage = () => {
                                 backgroundColor: '#2f6dfd',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '47vh',
+                                height: '50vh',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -378,6 +446,7 @@ const DashboardPage = () => {
                             }}
                             onMouseEnter={() => handleMotorMouseEnter(2)}
                             onMouseLeave={handleMotorMouseLeave}
+                            onClick={handleMaxMotorClick}
                         >
                             {hoveredMotorItem === 2 && (
                                 <div style={{
@@ -434,14 +503,14 @@ const DashboardPage = () => {
                             </div>
                         </li>
                     </ul>
-                    <div style={{
+                    <div id="mobil" style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
                         gap: '1rem'
                     }}>
                     </div>
                 </div>
-                <div id="mobil" style={{
+                <div style={{
                     backgroundColor: 'white',
                     padding: '2rem',
                     borderRadius: '0.5rem',
@@ -475,7 +544,7 @@ const DashboardPage = () => {
                                 backgroundColor: '#2f6dfd',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '47vh',
+                                height: '50vh',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -483,6 +552,7 @@ const DashboardPage = () => {
                             }}
                             onMouseEnter={() => handleMobilMouseEnter(0)}
                             onMouseLeave={handleMobilMouseLeave}
+                            onClick={handleStarterMobilClick}
                         >
                             {hoveredMobilItem === 0 && (
                                 <div style={{
@@ -532,6 +602,9 @@ const DashboardPage = () => {
                                     <li>Penitipan Mobil</li>
                                     <li>Perawatan Mobil</li>
                                     <li>Keamanan Mobil</li>
+                                    <li style={{color: '#919191'}}>Cuci Mobil</li>
+                                    <li style={{color: '#919191'}}>Penjemputan Mobil</li>
+                                    <li style={{color: '#919191'}}>Pengantaran Mobil</li>
                                 </ul>
                             </div>
                         </li>
@@ -541,7 +614,7 @@ const DashboardPage = () => {
                                 backgroundColor: '#2f6dfd',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '47vh',
+                                height: '50vh',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -549,6 +622,7 @@ const DashboardPage = () => {
                             }}
                             onMouseEnter={() => handleMobilMouseEnter(1)}
                             onMouseLeave={handleMobilMouseLeave}
+                            onClick={handleBoostMobilClick}
                         >
                             {hoveredMobilItem === 1 && (
                                 <div style={{
@@ -599,6 +673,8 @@ const DashboardPage = () => {
                                     <li>Perawatan Mobil</li>
                                     <li>Keamanan Mobil</li>
                                     <li>Cuci Mobil</li>
+                                    <li style={{color: '#919191'}}>Penjemputan Mobil</li>
+                                    <li style={{color: '#919191'}}>Pengantaran Mobil</li>
                                 </ul>
                             </div>
                         </li>
@@ -608,7 +684,7 @@ const DashboardPage = () => {
                                 backgroundColor: '#2f6dfd',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '47vh',
+                                height: '50vh',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -616,6 +692,7 @@ const DashboardPage = () => {
                             }}
                             onMouseEnter={() => handleMobilMouseEnter(2)}
                             onMouseLeave={handleMobilMouseLeave}
+                            onClick={handleMaxMobilClick}
                         >
                             {hoveredMobilItem === 2 && (
                                 <div style={{
@@ -678,6 +755,62 @@ const DashboardPage = () => {
                         gap: '1rem'
                     }}>
                     </div>
+                </div>
+                <div id="pesanan" style={{
+                    backgroundColor: 'white',
+                    padding: '2rem',
+                    borderRadius: '0.5rem',
+                    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+                    marginTop: '2rem',
+                    marginLeft: '5%',
+                    marginRight: '5%',
+                    paddingLeft: '4%',
+                    paddingRight: '4%',
+                    paddingBottom: '3rem'
+                }}>
+                    <h2 style={{
+                        fontSize: '1.5rem',
+                        fontWeight: 'bold',
+                        color: '#2f6dfd',
+                        marginBottom: '1rem',
+                        fontFamily: 'Poppins, sans-serif',
+                    }}>
+                        Pesanan Saya
+                    </h2>
+                    {pesanan.length === 0 ? (
+                        <p style={{ color: '#6b7280', fontFamily: 'Poppins, sans-serif' }}>Belum ada pesanan.</p>
+                    ) : (
+                        <div style={{ overflowX: 'auto' }}>
+                            <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Poppins, sans-serif', fontSize: '1rem' }}>
+                                <thead>
+                                    <tr style={{ background: '#f3f4f6' }}>
+                                        <th style={{ padding: '8px', border: '1px solid #e5e7eb' }}>No</th>
+                                        <th style={{ padding: '8px', border: '1px solid #e5e7eb' }}>Kode</th>
+                                        <th style={{ padding: '8px', border: '1px solid #e5e7eb' }}>Tanggal Masuk</th>
+                                        <th style={{ padding: '8px', border: '1px solid #e5e7eb' }}>Tanggal Keluar</th>
+                                        <th style={{ padding: '8px', border: '1px solid #e5e7eb' }}>Paket</th>
+                                        <th style={{ padding: '8px', border: '1px solid #e5e7eb' }}>Harga</th>
+                                        <th style={{ padding: '8px', border: '1px solid #e5e7eb' }}></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {pesanan.map((p, i) => (
+                                        <tr key={p._id}>
+                                            <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>{i + 1}</td>
+                                            <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>{p.kode}</td>
+                                            <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>{p.tanggalMasuk}</td>
+                                            <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>{p.tanggalKeluar}</td>
+                                            <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>{p.paket}</td>
+                                            <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>Rp {p.total?.toLocaleString()}</td>
+                                            <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>
+                                                <button onClick={() => window.location.href = `/rincian_pemesanan/${p.kode}`} style={{ background: '#2563eb', color: 'white', border: 'none', borderRadius: 6, padding: '0.4rem 1.2rem', fontWeight: 'bold', cursor: 'pointer' }}>Lihat</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
                 </div>
             </main>
             <style jsx>{`
