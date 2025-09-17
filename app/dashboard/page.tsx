@@ -157,13 +157,18 @@ const DashboardPage = () => {
                 top: 0,
                 left: 0,
                 right: 0,
-                zIndex: 1000,                marginBottom: '5%',
+                zIndex: 1000,
+                marginBottom: '5%',
                 backgroundColor: 'white',
                 padding: '1rem 2rem',
-                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                background: 'rgba(255, 255, 255, 0.6)',
+                backdropFilter: 'blur(15px)',
+                WebkitBackdropFilter: 'blur(15px)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                boxShadow: '0 4px 20px 0 rgba(0, 0, 0, 0.1)',
             }}>
                 <div onClick={scrollToAtas} style={{ display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer'}}>
                     <Image 
@@ -218,7 +223,7 @@ const DashboardPage = () => {
                 marginTop: '6%'
             }}>
                 <div style={{
-                    backgroundColor: '#2f6dfd',
+                    backgroundColor: '#05308C',
                     borderRadius: '0.5rem',
                     boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                     marginBottom: '2rem',
@@ -229,11 +234,11 @@ const DashboardPage = () => {
                     {/* Bagian atas dengan foto */}
                     <div style={{
                         width: '100%',
-                        height: '14rem',
+                        height: '15rem',
                         position: 'relative'
                     }}>
                         <Image 
-                            src="/img/parking_lot.jpg" 
+                            src="/img/Background_Dashboard.png" 
                             alt="Parking Lot" 
                             fill
                             style={{
@@ -252,7 +257,7 @@ const DashboardPage = () => {
                         <h1 style={{
                             fontSize: '2rem',
                             fontWeight: 'bold',
-                            color: '#F7C100',
+                            color: '#ffffffff',
                             fontFamily: 'Poppins, sans-serif',
                             marginBottom: '1rem'
                         }}>
@@ -283,7 +288,7 @@ const DashboardPage = () => {
                     <h2 style={{
                         fontSize: '1.5rem',
                         fontWeight: 'bold',
-                        color: '#2f6dfd',
+                        color: '#05308C',
                         marginBottom: '1rem',
                         fontFamily: 'Poppins, sans-serif',
                     }}>
@@ -299,10 +304,10 @@ const DashboardPage = () => {
                         <li className="paket-item-motor" 
                             style={{
                                 alignItems: 'center',
-                                backgroundColor: '#2f6dfd',
+                                backgroundColor: '#05308C',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '50vh',
+                                height: '23rem',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -312,38 +317,19 @@ const DashboardPage = () => {
                             onMouseLeave={handleMotorMouseLeave}
                             onClick={handleStarterMotorClick}
                         >
-                            {hoveredMotorItem === 0 && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '7rem',
-                                    zIndex: 1,
-                                    overflow: 'hidden',
-                                    borderRadius: '10px 10px 0 0'
-                                }}>
-                                    <Image 
-                                        src="/img/parkir_motor.jpg" 
-                                        alt="Parkir Motor" 
-                                        fill
+                            <div>
+                                <div style={{backgroundColor: '#FFBB68', borderRadius: '0 0 10px 10px', paddingTop: '0.8rem'}}>
+                                    <img 
+                                        src="/img/icon_motor_kecil.png" 
+                                        alt="Icon Motor Kecil"
                                         style={{
-                                            objectFit: 'cover',
-                                            transition: 'transform 0.3s ease'
-                                        }}
+                                            height: '6rem',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }} 
                                     />
+                                    <h1 style={{margin: 0, paddingBottom: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS STARTER</h1>
                                 </div>
-                            )}
-                            <div style={{
-                                position: 'relative',
-                                zIndex: 2,
-                                transition: 'all 0.1s ease',
-                                transform: hoveredMotorItem === 0 ? 'translateY(7rem)' : 'translateY(0)',
-                                backgroundColor: hoveredMotorItem === 0 ? 'rgba(47, 109, 253, 0.95)' : 'transparent',
-                                borderRadius: hoveredMotorItem === 0 ? '0 0 10px 10px' : '10px',
-                                padding: hoveredMotorItem === 0 ? '0' : '0'
-                            }}>
-                                <h1 style={{backgroundColor: '#F7C100',  margin: 0, padding: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS STARTER</h1>
                                 <ul style={{
                                     listStyleType: 'disc',
                                     listStylePosition: 'inside',
@@ -360,19 +346,16 @@ const DashboardPage = () => {
                                     <li>Penitipan Motor</li>
                                     <li>Perawatan Motor</li>
                                     <li>Keamanan Motor</li>
-                                    <li style={{color: '#919191'}}>Cuci Motor</li>
-                                    <li style={{color: '#919191'}}>Penjemputan Motor</li>
-                                    <li style={{color: '#919191'}}>Pengantaran Motor</li>
                                 </ul>
                             </div>
                         </li>
                         <li className="paket-item-motor" 
                             style={{
                                 alignItems: 'center',
-                                backgroundColor: '#2f6dfd',
+                                backgroundColor: '#05308C',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '50vh',
+                                height: '23rem',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -382,38 +365,19 @@ const DashboardPage = () => {
                             onMouseLeave={handleMotorMouseLeave}
                             onClick={handleBoostMotorClick}
                         >
-                            {hoveredMotorItem === 1 && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '7rem',
-                                    zIndex: 1,
-                                    overflow: 'hidden',
-                                    borderRadius: '10px 10px 0 0'
-                                }}>
-                                    <Image 
-                                        src="/img/parkir_motor.jpg" 
-                                        alt="Parkir Motor" 
-                                        fill
+                            <div>
+                                <div style={{backgroundColor: '#FFBB68', borderRadius: '0 0 10px 10px', paddingTop: '0.8rem'}}>
+                                    <img 
+                                        src="/img/icon_motor_sedang.png" 
+                                        alt="Icon Motor Sedang"
                                         style={{
-                                            objectFit: 'cover',
-                                            transition: 'transform 0.3s ease'
-                                        }}
+                                            height: '6rem',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }} 
                                     />
+                                    <h1 style={{margin: 0, paddingBottom: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS BOOST</h1>
                                 </div>
-                            )}
-                            <div style={{
-                                position: 'relative',
-                                zIndex: 2,
-                                transition: 'all 0.1s ease',
-                                transform: hoveredMotorItem === 1 ? 'translateY(7rem)' : 'translateY(0)',
-                                backgroundColor: hoveredMotorItem === 1 ? 'rgba(47, 109, 253, 0.95)' : 'transparent',
-                                borderRadius: hoveredMotorItem === 1 ? '0 0 10px 10px' : '10px',
-                                padding: hoveredMotorItem === 1 ? '0' : '0'
-                            }}>
-                                <h1 style={{backgroundColor: '#F7C100', margin: 0, padding: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS BOOST</h1>
                                 <ul style={{
                                     listStyleType: 'disc',
                                     listStylePosition: 'inside',
@@ -431,18 +395,16 @@ const DashboardPage = () => {
                                     <li>Perawatan Motor</li>
                                     <li>Keamanan Motor</li>
                                     <li>Cuci Motor</li>
-                                    <li style={{color: '#919191'}}>Penjemputan Motor</li>
-                                    <li style={{color: '#919191'}}>Pengantaran Motor</li>
                                 </ul>
                             </div>
                         </li>
                         <li className="paket-item-motor" 
                             style={{
                                 alignItems: 'center',
-                                backgroundColor: '#2f6dfd',
+                                backgroundColor: '#05308C',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '50vh',
+                                height: '23rem',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -452,38 +414,19 @@ const DashboardPage = () => {
                             onMouseLeave={handleMotorMouseLeave}
                             onClick={handleMaxMotorClick}
                         >
-                            {hoveredMotorItem === 2 && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '7rem',
-                                    zIndex: 1,
-                                    overflow: 'hidden',
-                                    borderRadius: '10px 10px 0 0'
-                                }}>
-                                    <Image 
-                                        src="/img/parkir_motor.jpg" 
-                                        alt="Parkir Motor" 
-                                        fill
+                            <div>
+                                <div style={{backgroundColor: '#FFBB68', borderRadius: '0 0 10px 10px', paddingTop: '0.8rem'}}>
+                                    <img 
+                                        src="/img/icon_motor_besar.png" 
+                                        alt="Icon Motor Besar"
                                         style={{
-                                            objectFit: 'cover',
-                                            transition: 'transform 0.3s ease'
-                                        }}
+                                            height: '6rem',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }} 
                                     />
+                                    <h1 style={{margin: 0, paddingBottom: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS MAX</h1>
                                 </div>
-                            )}
-                            <div style={{
-                                position: 'relative',
-                                zIndex: 2,
-                                transition: 'all 0.1s ease',
-                                transform: hoveredMotorItem === 2 ? 'translateY(7rem)' : 'translateY(0)',
-                                backgroundColor: hoveredMotorItem === 2 ? 'rgba(47, 109, 253, 0.95)' : 'transparent',
-                                borderRadius: hoveredMotorItem === 2 ? '0 0 10px 10px' : '10px',
-                                padding: hoveredMotorItem === 2 ? '0' : '0'
-                            }}>
-                                <h1 style={{backgroundColor: '#F7C100',  margin: 0, padding: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS MAX</h1>
                                 <ul style={{
                                     listStyleType: 'disc',
                                     listStylePosition: 'inside',
@@ -529,7 +472,7 @@ const DashboardPage = () => {
                     <h2 style={{
                         fontSize: '1.5rem',
                         fontWeight: 'bold',
-                        color: '#2f6dfd',
+                        color: '#05308C',
                         marginBottom: '1rem',
                         fontFamily: 'Poppins, sans-serif',
                     }}>
@@ -545,10 +488,10 @@ const DashboardPage = () => {
                         <li className="paket-item-mobil" 
                             style={{
                                 alignItems: 'center',
-                                backgroundColor: '#2f6dfd',
+                                backgroundColor: '#05308C',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '50vh',
+                                height: '23rem',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -558,38 +501,19 @@ const DashboardPage = () => {
                             onMouseLeave={handleMobilMouseLeave}
                             onClick={handleStarterMobilClick}
                         >
-                            {hoveredMobilItem === 0 && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '7rem',
-                                    zIndex: 1,
-                                    overflow: 'hidden',
-                                    borderRadius: '10px 10px 0 0'
-                                }}>
-                                    <Image 
-                                        src="/img/parkir_mobil.jpg" 
-                                        alt="Parkir Mobil" 
-                                        fill
+                            <div>
+                                <div style={{backgroundColor: '#FFBB68', borderRadius: '0 0 10px 10px', paddingTop: '0.8rem'}}>
+                                    <img 
+                                        src="/img/icon_mobil_kecil.png" 
+                                        alt="Icon Mobil Kecil"
                                         style={{
-                                            objectFit: 'cover',
-                                            transition: 'transform 0.3s ease'
-                                        }}
+                                            height: '6rem',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }} 
                                     />
+                                    <h1 style={{margin: 0, paddingBottom: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS STARTER</h1>
                                 </div>
-                            )}
-                            <div style={{
-                                position: 'relative',
-                                zIndex: 2,
-                                transition: 'all 0.1s ease',
-                                transform: hoveredMobilItem === 0 ? 'translateY(7rem)' : 'translateY(0)',
-                                backgroundColor: hoveredMobilItem === 0 ? 'rgba(47, 109, 253, 0.95)' : 'transparent',
-                                borderRadius: hoveredMobilItem === 0 ? '0 0 10px 10px' : '10px',
-                                padding: hoveredMobilItem === 0 ? '0' : '0'
-                            }}>
-                                <h1 style={{backgroundColor: '#F7C100',  margin: 0, padding: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS STARTER</h1>
                                 <ul style={{
                                     listStyleType: 'disc',
                                     listStylePosition: 'inside',
@@ -606,19 +530,16 @@ const DashboardPage = () => {
                                     <li>Penitipan Mobil</li>
                                     <li>Perawatan Mobil</li>
                                     <li>Keamanan Mobil</li>
-                                    <li style={{color: '#919191'}}>Cuci Mobil</li>
-                                    <li style={{color: '#919191'}}>Penjemputan Mobil</li>
-                                    <li style={{color: '#919191'}}>Pengantaran Mobil</li>
                                 </ul>
                             </div>
                         </li>
                         <li className="paket-item-mobil" 
                             style={{
                                 alignItems: 'center',
-                                backgroundColor: '#2f6dfd',
+                                backgroundColor: '#05308C',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '50vh',
+                                height: '23rem',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -628,38 +549,19 @@ const DashboardPage = () => {
                             onMouseLeave={handleMobilMouseLeave}
                             onClick={handleBoostMobilClick}
                         >
-                            {hoveredMobilItem === 1 && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '7rem',
-                                    zIndex: 1,
-                                    overflow: 'hidden',
-                                    borderRadius: '10px 10px 0 0'
-                                }}>
-                                    <Image 
-                                        src="/img/parkir_mobil.jpg" 
-                                        alt="Parkir Mobil" 
-                                        fill
+                            <div>
+                                <div style={{backgroundColor: '#FFBB68', borderRadius: '0 0 10px 10px', paddingTop: '0.8rem'}}>
+                                    <img 
+                                        src="/img/icon_mobil_sedang.png" 
+                                        alt="Icon Mobil Sedang"
                                         style={{
-                                            objectFit: 'cover',
-                                            transition: 'transform 0.3s ease'
-                                        }}
+                                            height: '6rem',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }} 
                                     />
+                                    <h1 style={{margin: 0, paddingBottom: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS BOOST</h1>
                                 </div>
-                            )}
-                            <div style={{
-                                position: 'relative',
-                                zIndex: 2,
-                                transition: 'all 0.1s ease',
-                                transform: hoveredMobilItem === 1 ? 'translateY(7rem)' : 'translateY(0)',
-                                backgroundColor: hoveredMobilItem === 1 ? 'rgba(47, 109, 253, 0.95)' : 'transparent',
-                                borderRadius: hoveredMobilItem === 1 ? '0 0 10px 10px' : '10px',
-                                padding: hoveredMobilItem === 1 ? '0' : '0'
-                            }}>
-                                <h1 style={{backgroundColor: '#F7C100', margin: 0, padding: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS BOOST</h1>
                                 <ul style={{
                                     listStyleType: 'disc',
                                     listStylePosition: 'inside',
@@ -677,18 +579,16 @@ const DashboardPage = () => {
                                     <li>Perawatan Mobil</li>
                                     <li>Keamanan Mobil</li>
                                     <li>Cuci Mobil</li>
-                                    <li style={{color: '#919191'}}>Penjemputan Mobil</li>
-                                    <li style={{color: '#919191'}}>Pengantaran Mobil</li>
                                 </ul>
                             </div>
                         </li>
                         <li className="paket-item-mobil" 
                             style={{
                                 alignItems: 'center',
-                                backgroundColor: '#2f6dfd',
+                                backgroundColor: '#05308C',
                                 borderRadius: '10px',
                                 width: '18vw',
-                                height: '50vh',
+                                height: '23rem',
                                 transition: 'transform 0.3s ease, height 0.3s ease',
                                 cursor: 'pointer',
                                 position: 'relative',
@@ -698,38 +598,19 @@ const DashboardPage = () => {
                             onMouseLeave={handleMobilMouseLeave}
                             onClick={handleMaxMobilClick}
                         >
-                            {hoveredMobilItem === 2 && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '7rem',
-                                    zIndex: 1,
-                                    overflow: 'hidden',
-                                    borderRadius: '10px 10px 0 0'
-                                }}>
-                                    <Image 
-                                        src="/img/parkir_mobil.jpg" 
-                                        alt="Parkir Mobil" 
-                                        fill
+                            <div>
+                                <div style={{backgroundColor: '#FFBB68', borderRadius: '0 0 10px 10px', paddingTop: '0.8rem'}}>
+                                    <img 
+                                        src="/img/icon_mobil_besar.png" 
+                                        alt="Icon Mobil Besar"
                                         style={{
-                                            objectFit: 'cover',
-                                            transition: 'transform 0.3s ease'
-                                        }}
+                                            height: '6rem',
+                                            display: 'block',
+                                            margin: '0 auto',
+                                        }} 
                                     />
+                                    <h1 style={{margin: 0, padding: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS MAX</h1>
                                 </div>
-                            )}
-                            <div style={{
-                                position: 'relative',
-                                zIndex: 2,
-                                transition: 'all 0.1s ease',
-                                transform: hoveredMobilItem === 2 ? 'translateY(7rem)' : 'translateY(0)',
-                                backgroundColor: hoveredMobilItem === 2 ? 'rgba(47, 109, 253, 0.95)' : 'transparent',
-                                borderRadius: hoveredMobilItem === 2 ? '0 0 10px 10px' : '10px',
-                                padding: hoveredMobilItem === 2 ? '0' : '0'
-                            }}>
-                                <h1 style={{backgroundColor: '#F7C100',  margin: 0, padding: '10px', borderRadius: '0 0 10px 10px', fontWeight: 'bold', color: '#ffffff', fontSize: '1.2rem', fontFamily: 'Poppins, sans-serif', textAlign: 'center'}}>PAKET<br />GAS MAX</h1>
                                 <ul style={{
                                     listStyleType: 'disc',
                                     listStylePosition: 'inside',
@@ -775,7 +656,7 @@ const DashboardPage = () => {
                     <h2 style={{
                         fontSize: '1.5rem',
                         fontWeight: 'bold',
-                        color: '#2f6dfd',
+                        color: '#05308C',
                         marginBottom: '1rem',
                         fontFamily: 'Poppins, sans-serif',
                     }}>
@@ -807,7 +688,7 @@ const DashboardPage = () => {
                                             <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>{p.paket}</td>
                                             <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>Rp {p.total?.toLocaleString()}</td>
                                             <td style={{ padding: '8px', border: '1px solid #e5e7eb', textAlign: 'center' }}>
-                                                <button onClick={() => window.location.href = `/rincian_pemesanan/${p.kode}`} style={{ background: '#2563eb', color: 'white', border: 'none', borderRadius: 6, padding: '0.4rem 1.2rem', fontWeight: 'bold', cursor: 'pointer' }}>Lihat</button>
+                                                <button onClick={() => window.location.href = `/rincian_pemesanan/${p.kode}`} style={{ background: '#05308C', color: 'white', border: 'none', borderRadius: 6, padding: '0.4rem 1.2rem', fontWeight: 'bold', cursor: 'pointer' }}>Lihat</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -835,7 +716,7 @@ const DashboardPage = () => {
                     will-change: transform;
                 }
                 .header_paket .header_text:hover {
-                    color: #2f6dfd !important;
+                    color: #05308C !important;
                 }
                 .header_paket .header_text:active {
                     color: #5b8cff !important;
@@ -848,11 +729,11 @@ const DashboardPage = () => {
             }}>
                 <h3 style={{
                     fontSize: '0.9rem',
-                    color: 'rgb(44, 44, 44)',
-                    backgroundColor: 'rgb(228, 228, 228)',
+                    color: 'rgb(255, 255, 255)',
+                    backgroundColor: '#05308C',
                     width: '100%',
                     textAlign: 'center',
-                    padding: '8px',
+                    padding: '1rem',
                     fontFamily: 'Poppins, sans-serif',
                     margin: 0,
                     borderRadius: '0 0 10px 10px'

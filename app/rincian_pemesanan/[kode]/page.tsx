@@ -48,7 +48,7 @@ export default function RincianPemesananPage({ params }: { params: Promise<{ kod
   return (
     <div style={{ minHeight: '100vh', background: '#f9fafb', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: 'Poppins, Arial, sans-serif' }}>
       <div style={{ background: 'white', borderRadius: '1rem', boxShadow: '0 1px 3px 0 rgba(0,0,0,0.1)', padding: '2.5rem 2rem', minWidth: 340, maxWidth: 400, width: '100%' }}>
-        <h2 style={{ fontWeight: 'bold', fontSize: '1.3rem', color: '#2f6dfd', margin: 0, marginBottom: '1.5rem', textAlign: 'center' }}>Rincian Pemesanan</h2>
+        <h2 style={{ fontWeight: 'bold', fontSize: '1.3rem', color: '#05308C', margin: 0, marginBottom: '1.5rem', textAlign: 'center' }}>Rincian Pemesanan</h2>
         <div style={{ marginBottom: '1rem' }}><b>Kode:</b> {data.kode}</div>
         <div style={{ marginBottom: '1rem' }}><b>Nama Lengkap:</b> {data.nama}</div>
         <div style={{ marginBottom: '1rem' }}><b>Alamat:</b> {data.alamat}</div>
@@ -81,7 +81,7 @@ export default function RincianPemesananPage({ params }: { params: Promise<{ kod
             disabled={deleting}
             style={{
               width: '50%',
-              background: '#2563eb',
+              background: '#05308C',
               color: 'white',
               fontWeight: 'bold',
               border: 'none',

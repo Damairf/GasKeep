@@ -7,6 +7,14 @@ const TentangLanding = () => {
                 <h1 className={styles.judul}>Tentang Kami</h1>
                 <p className={styles.isi}>GasKeep adalah sebuah startup yang bergerak di bidang jasa penitipan dan perawatan kendaraan, khususnya untuk menjawab kebutuhan mahasiswa perantau yang harus meninggalkan kendaraannya saat pulang kampung. Dengan mengusung tagline &quot;Teman Setia Kendaraan Anda,&quot; GasKeep hadir sebagai solusi yang aman, terpercaya, dan terjangkau dalam menjaga kondisi kendaraan baik secara fisik maupun mesin selama pemiliknya tidak berada di tempat. Layanan GasKeep dapat diakses secara online, memudahkan pelanggan dalam melakukan reservasi serta memilih paket perawatan sesuai kebutuhan. Pelanggan juga diberikan kemudahan dalam penyerahan kendaraan melalui dua opsi, yaitu pengantaran langsung atau layanan penjemputan. Dengan adanya GasKeep, mahasiswa tidak perlu lagi khawatir akan keamanan dan kondisi kendaraannya selama ditinggal dalam waktu lama.</p>
             </div>
+            <div className={styles.hubungi_container}>
+                <h2 className={styles.judul_hubungi}>Hubungi Kami</h2>
+                    <div className={styles.email_row}>
+                        <span className={styles.email_icon}><img src="/img/Mail.png" alt="Mail" /></span>
+                        <h3 className={styles.email_hubungi}>gaskeep@gmail.com</h3>
+                    </div>
+                <h3>Jl. Prof. Soedarto, Tembalang, Kec. Tembalang, Kota Semarang, Jawa Tengah</h3>
+            </div>
             <div className={styles.footer_container}>
                 <h3 className={styles.footer}>©2025 GasKeep - All Rights Reserved</h3>
             </div>

@@ -166,7 +166,7 @@ const DetailPemesananContent = () => {
   return (
     <div style={{ minHeight: '100vh', background: '#f9fafb', display: 'flex', justifyContent: 'center', alignItems: 'center', fontFamily: 'Poppins, Arial, sans-serif' }}>
       <form onSubmit={handleSubmit} style={{ background: 'white', borderRadius: '1rem', boxShadow: '0 1px 3px 0 rgba(0,0,0,0.1)', padding: '2.5rem 2rem', minWidth: 440, maxWidth: 600, width: '100%' }}>
-        <h2 style={{ fontWeight: 'bold', fontSize: '1.3rem', color: '#2f6dfd', margin: 0, marginBottom: '1.5rem', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{judul}</h2>
+        <h2 style={{ fontWeight: 'bold', fontSize: '1.3rem', color: '#05308C', margin: 0, marginBottom: '1.5rem', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{judul}</h2>
         <div style={{ marginBottom: '1rem' }}>
           <label style={{ fontWeight: 'bold', display: 'block', marginBottom: 4 }}>Nama Lengkap</label>
           <input type="text" value={nama} onChange={handleNamaChange} required style={{ width: '100%', padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', textTransform: 'capitalize' }} />
@@ -204,8 +204,8 @@ const DetailPemesananContent = () => {
           <input type="date" value={tanggalKeluar} readOnly style={{ width: '100%', padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: '#f3f4f6' }} />
         </div>
         <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
-          <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#2f6dfd' }}>Total Harga: </span>
-          <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#F7C100' }}>Rp {harga.toLocaleString()} x {jumlahHari} = Rp {total.toLocaleString()}</span>
+          <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#05308C' }}>Total Harga: </span>
+          <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#FFBB68' }}>Rp {harga.toLocaleString()} x {jumlahHari} = Rp {total.toLocaleString()}</span>
           <p style={{ fontSize: '0.8rem', color: '#6b7280' }}>Anda dapat mengambil lebih cepat dari tanggal keluar tetapi tidak ada pengurangan harga</p>
         </div>
         <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
@@ -226,7 +226,7 @@ const DetailPemesananContent = () => {
           >
             Kembali
           </button>
-          <button type="submit" disabled={isSubmitting || isNaN(jumlahHari)} style={{ width: '50%', background: '#2f6dfd', color: 'white', fontWeight: 'bold', border: 'none', borderRadius: 6, padding: '0.8rem 0', fontSize: '1rem', cursor: isSubmitting || isNaN(jumlahHari) ? 'not-allowed' : 'pointer', opacity: isSubmitting || isNaN(jumlahHari) ? 0.7 : 1 }}>
+          <button type="submit" disabled={isSubmitting || isNaN(jumlahHari)} style={{ width: '50%', background: '#05308C', color: 'white', fontWeight: 'bold', border: 'none', borderRadius: 6, padding: '0.8rem 0', fontSize: '1rem', cursor: isSubmitting || isNaN(jumlahHari) ? 'not-allowed' : 'pointer', opacity: isSubmitting || isNaN(jumlahHari) ? 0.7 : 1 }}>
             {isSubmitting ? 'Memproses...' : 'Konfirmasi Pesanan'}
           </button>
         </div>

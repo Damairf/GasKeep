@@ -14,7 +14,7 @@
     text-align: center;
     font-size: 3rem;
     font-weight: bold;
-    color: #F7C100;
+    color: #FFBB68;
     font-family: 'Poppins', sans-serif;   
 }
 
@@ -27,6 +27,45 @@
     color: rgb(44, 44, 44);
 }
 
+.hubungi_container {
+    background-color: rgb(237, 236, 236);
+    width: 100%;
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    height: 8rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(58, 58, 58);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.judul_hubungi {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.email_row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.email_icon img {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+}
+
+.email_hubungi {
+    text-decoration: underline;
+    color: #05308C;
+    font-size: 1rem;
+    margin: 0;
+} 
+
 .footer_container {
     margin-top: auto;
     width: 100%;
@@ -35,10 +74,10 @@
 .footer {
     text-align: center;
     width: 100%;
-    padding: 8px;
+    padding: 1rem;
     font-size: 0.9rem;
     font-family: 'Poppins', sans-serif;
-    color: rgb(44, 44, 44);
-    background-color: rgb(228, 228, 228);
+    color: rgb(255, 255, 255);
+    background-color: #05308C;
     margin: 0;
 }

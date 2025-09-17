@@ -1,30 +1,36 @@
+.bg_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+    z-index: -1;
+}
+
+.image_bg_container {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
     margin-bottom: 1%;
-    padding-top: 120px;
+    padding-top: 9rem;
 }
 
 .container {
-    background-color: #2f6dfd;
     margin: 0 auto;
-    height: 50vh;
-    width: 85vw;
+    height: 45vh;
+    width: 70vw;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-}
-
-.tagline {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #F7C100;
-    font-family: 'Poppins', sans-serif;
-    z-index: 10;
 }
 
 .text_container {
@@ -36,7 +42,7 @@
 .judul {
     font-size: 3rem;
     font-weight: bold;
-    color: #F7C100;
+    color: #FFBB68;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -55,7 +61,7 @@
     padding-right: 22px;
     font-size: 1rem;
     font-weight: 600;
-    border: 3px solid #2f6dfd;
+    border: 3px solid #05308C;
     cursor: pointer;
     border-radius: 20px;
     transition: 0.3s ease;
@@ -64,13 +70,13 @@
 }
 
 .button:hover {
-    background-color: #2f6dfd;
+    background-color: #05308C;
     color: white;
 }
 
 .button:active {
-    background-color: #5b8cff;
-    border: 3px solid #5b8cff;
+    background-color: #0a3ca8;
+    border: 3px solid #0a3ca8;
 }
 
 .image_container {
@@ -78,9 +84,7 @@
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    opacity: 15%;
-    /* mask-image: linear-gradient(to right, transparent 0%, transparent 20%, #2f6dfd 30%, 70%, transparent 80%, transparent 100%); */
-    /* -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 20%, #2f6dfd 30%, 70%, transparent 80%, transparent 100%); */
+    opacity: 100%;
     z-index: 1;
     position: absolute;
 }

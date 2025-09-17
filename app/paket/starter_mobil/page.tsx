@@ -103,7 +103,7 @@ const StarterMotorPage = () => {
                 marginTop: '6%'
             }}>
                 <div style={{
-                    backgroundColor: '#2f6dfd',
+                    backgroundColor: '#05308C',
                     borderRadius: '0.5rem',
                     boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
                     marginBottom: '2rem',
@@ -118,8 +118,8 @@ const StarterMotorPage = () => {
                         position: 'relative'
                     }}>
                         <Image 
-                            src="/img/parkir_mobil.jpg" 
-                            alt="Parkir Mobil" 
+                            src="/img/banner_mobil_starter.png" 
+                            alt="Paket Mobil Starter" 
                             fill
                             style={{
                                 objectFit: 'cover'
@@ -137,7 +137,7 @@ const StarterMotorPage = () => {
                         <h1 style={{
                             fontSize: '2rem',
                             fontWeight: 'bold',
-                            color: '#F7C100',
+                            color: '#FFBB68',
                             fontFamily: 'Poppins, sans-serif',
                             marginBottom: '1rem'
                         }}>
@@ -168,7 +168,7 @@ const StarterMotorPage = () => {
                     <h2 style={{
                         fontSize: '1.5rem',
                         fontWeight: 'bold',
-                        color: '#2f6dfd',
+                        color: '#05308C',
                         marginBottom: '1rem',
                         fontFamily: 'Poppins, sans-serif',
                     }}>
@@ -198,7 +198,7 @@ const StarterMotorPage = () => {
                         <h3 style={{
                             fontSize: '1.2rem',
                             fontWeight: 'bold',
-                            color: '#2f6dfd',
+                            color: '#05308C',
                             marginBottom: '1rem',
                             fontFamily: 'Poppins, sans-serif',
                         }}>
@@ -207,7 +207,7 @@ const StarterMotorPage = () => {
                         <p style={{
                             fontSize: '1.5rem',
                             fontWeight: 'bold',
-                            color: '#F7C100',
+                            color: '#FFBB68',
                             fontFamily: 'Poppins, sans-serif',
                             margin: 0
                         }}>
@@ -244,7 +244,7 @@ const StarterMotorPage = () => {
                         </Link>
                         <button id='starter-mobil-button' style={{
                             padding: '0.75rem 1.5rem',
-                            backgroundColor: '#F7C100',
+                            backgroundColor: '#FFBB68',
                             color: 'white',
                             border: 'none',
                             borderRadius: '0.375rem',
@@ -275,11 +275,11 @@ const StarterMotorPage = () => {
             }}>
                 <h3 style={{
                     fontSize: '0.9rem',
-                    color: 'rgb(44, 44, 44)',
-                    backgroundColor: 'rgb(228, 228, 228)',
+                    color: 'rgb(255, 255, 255)',
+                    backgroundColor: '#05308C',
                     width: '100%',
                     textAlign: 'center',
-                    padding: '8px',
+                    padding: '1rem',
                     fontFamily: 'Poppins, sans-serif',
                     margin: 0,
                     borderRadius: '0 0 10px 10px'
