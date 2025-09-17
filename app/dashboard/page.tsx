@@ -21,7 +21,7 @@ const DashboardPage = () => {
     const [user, setUser] = useState<unknown>(null);
     const [isLoading, setIsLoading] = useState(true);
     // const [hoveredMotorItem, setHoveredMotorItem] = useState<number | null>(null);
-    const [hoveredMobilItem, setHoveredMobilItem] = useState<number | null>(null);
+    // const [hoveredMobilItem, setHoveredMobilItem] = useState<number | null>(null);
     const [pesanan, setPesanan] = useState<Pesanan[]>([]);
 
     useEffect(() => {
@@ -61,11 +61,11 @@ const DashboardPage = () => {
     };
 
     const handleMobilMouseEnter = (index: number) => {
-        setHoveredMobilItem(index);
+        // setHoveredMobilItem(index);
     };
 
     const handleMobilMouseLeave = () => {
-        setHoveredMobilItem(null);
+        // setHoveredMobilItem(null);
     };
 
     const handleStarterMotorClick = () => {
