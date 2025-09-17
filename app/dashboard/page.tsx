@@ -20,9 +20,10 @@ interface Pesanan {
 const DashboardPage = () => {
     const [user, setUser] = useState<unknown>(null);
     const [isLoading, setIsLoading] = useState(true);
-    // const [hoveredMotorItem, setHoveredMotorItem] = useState<number | null>(null);
-    // const [hoveredMobilItem, setHoveredMobilItem] = useState<number | null>(null);
+    const [hoveredMotorItem, setHoveredMotorItem] = useState<number | null>(null);
+    const [hoveredMobilItem, setHoveredMobilItem] = useState<number | null>(null);
     const [pesanan, setPesanan] = useState<Pesanan[]>([]);
+    console.log(hoveredMotorItem, hoveredMobilItem);
 
     useEffect(() => {
         const checkAuth = () => {
@@ -53,19 +54,19 @@ const DashboardPage = () => {
     }, []);
 
     const handleMotorMouseEnter = (index: number) => {
-        // setHoveredMotorItem(index);
+        setHoveredMotorItem(index);
     };
 
     const handleMotorMouseLeave = () => {
-        // setHoveredMotorItem(null);
+        setHoveredMotorItem(null);
     };
 
     const handleMobilMouseEnter = (index: number) => {
-        // setHoveredMobilItem(index);
+        setHoveredMobilItem(index);
     };
 
     const handleMobilMouseLeave = () => {
-        // setHoveredMobilItem(null);
+        setHoveredMobilItem(null);
     };
 
     const handleStarterMotorClick = () => {
